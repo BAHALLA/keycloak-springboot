@@ -4,7 +4,7 @@
       layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Customers</title>
+    <title>Categories</title>
     <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -12,19 +12,17 @@
 <div layout:fragment="content">
 
     <div class="container top-spacer">
-        <h2 class="justify-content-end">Hello <span th:text="${username}" ></span></h2>
         <div class="card">
-            <div class="card-header">List of customers</div>
+            <div class="card-header">List of Categories</div>
             <div class="card-body">
                 <table class="table table-striped">
                     <tr>
-                        <th>#</th><th>FirstName</th><th>LastName</th>
+                        <th>#</th><th>Name</th>
                     </tr>
 
-                    <tr th:each=" c , iter :${customers}">
+                    <tr th:each=" c , iter :${categories}">
                         <td th:text="${iter.index}"></td>
-                        <td th:text="${c.firstName}"></td>
-                        <td th:text="${c.lastName}"></td>
+                        <td th:text="${c.name}"></td>
                     </tr>
                 </table>
             </div>
@@ -33,3 +31,4 @@
 </div>
 </body>
 </html>
+
