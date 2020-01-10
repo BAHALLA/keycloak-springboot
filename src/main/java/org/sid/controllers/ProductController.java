@@ -18,8 +18,15 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping("/products")
-    public String allProducts(Model model) {
-        model.addAttribute("products", productRepository.findAll());
+    public String allProducts( Model model) {
+            model.addAttribute("products", productRepository.findAll());
+        return "products";
+    }
+    @GetMapping("/products/search")
+    public String search(@RequestParam(name = "mc") String mc,  Model model) {
+        model.addAttribute("products", productRepository.findProductByNameContains(mc));
+        model.addAttribute("mc", mc);
+
         return "products";
     }
     @GetMapping("/products/analyse")
@@ -28,12 +35,7 @@ public class ProductController {
         model.addAttribute("products", productRepository.findProductByPriceGreaterThan(price));
         return "products";
     }
-    @GetMapping("/products/search")
-    public String search(@RequestParam("mc") String mc, Model model) {
-        model.addAttribute("price", mc);
-        model.addAttribute("products", productRepository.findProductByNameContaining(mc));
-        return "products";
-    }
+
 
     @PostMapping("/products")
     public String save(@RequestBody Product product) {

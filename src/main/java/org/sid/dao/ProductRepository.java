@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findProductByPriceGreaterThan(double price);
-    List<Product> findProductByNameContaining(String mc);
+    List<Product> findProductByNameContains(String mc);
 }

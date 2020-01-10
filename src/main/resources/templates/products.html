@@ -5,12 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Products</title>
-    <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
 </head>
 <body>
 <div layout:fragment="content">
 
+    <div class="container top-spacer">
+        <form th:action="@{/products/search}" method="get">
+            <div class="form-group">
+                <label for="mc">Search :</label>
+                <input type="text" id="mc" name="mc" class="form-control" th:value="${mc}" />
+            </div>
+            <button class="btn btn-primary">Search</button>
+        </form>
+    </div>
     <div class="container top-spacer">
         <div class="card">
             <div class="card-header">List of Products</div>
@@ -19,7 +27,6 @@
                     <tr>
                         <th>#</th><th>Name</th><th>Price</th>
                     </tr>
-
                     <tr th:each=" p , iter :${products}">
                         <td th:text="${iter.index}"></td>
                         <td th:text="${p.name}"></td>
